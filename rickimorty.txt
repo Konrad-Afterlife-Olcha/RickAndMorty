@@ -1,0 +1,13 @@
+Stworzenie aplikacji lub strony internetowej w oparciu o API Rick i Morty: https://rickandmortyapi.com/
+
+Rzeczy do zrobienia:
+1. Stworzenie ogólnego wyglądu strony, z zakładkami takimi jak: Nowości, odcinki, postacie, miejsca oraz wyróżnioną w jakiś sposób podstrona, w której użytkownik podając odpowiedzi na kilka prostych pytań może dowiedzieć się, jakim jest bohaterem z serialu Rick i Morty.
+2. Menu ma dodatkowe submenu, dla odcinków będzie to dodatkowe menu z listą sezonów, po kliknięciu w dany sezon, pokaże nam się lista odcinków z krótkim opisem, jakimś ujęciu z odcinka w postaci obrazka i jeżeli się uda, to ocena odcinka zaciągnięta z jakiegoś innego Api(opcjonalnie)
+3. W zakładce postaci będziemy mieli galerię z niewielkimi obrazkami bohaterów oraz kilka prostych informacji o nich. Możliwe rozbudowanie, np po kliknieciu w zdjęcie pokaże się full screen, dodatkowy przycisk, po naciśnięciu którego, pokaże się lista odcinków w których wystąpiła dana postać.
+4. zakładka miejsca, z listą miejsc/planet na których toczy się akcja. Także możliwe rozbudowanie.
+5. Opcjonalnie, jeżeli wystarczy czasu, dodatkowa zakładka, w której otrzymujemy kilka zabawnych i dziwnych pytań, a na koniec zostanie do nas dopasowany charakter z serialu, zależnie od odpowiedzi, jakiej udzieliliśmy. Tutaj po prostu zawężałbym z każdą odpowiedzią ilość możliwych postaci do wylosowania, np. po odpowiedzi na pierwsze pytanie, mamy pulę 15 postaci, odpowiadając na drugie pytanie z tych 15 zostanie nam 5, a odpowiadająć na trzecie wylosuje nam losową postać z tych 5.
+
+Wykorzystałbym tutaj albo zwykłego htmla, cssa i jquery z naciskiem na wykorzystanie gotowych przycisków, galerii (gdzieś nam chyba Marcin podawał ciekawe linki do takich rzeczy)
+Ewentualnie skorzystałbym z Reacta i tej stronki materialsUI ze świetnymi prawie gotowymi elementami , buttonami itp.
+
+To api z którego bym korzystał do tworzenia strony, ma limit 10000 zapytań dziennie, pytanie jak to jest liczone i czy jestem w stanie to przekroczyć, bo nie chcę przez to utknąć z robotą.
