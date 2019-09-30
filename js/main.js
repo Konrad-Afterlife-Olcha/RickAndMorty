@@ -15,9 +15,9 @@ class App extends React.Component {
 
                                     <nav>
                                         <ul className={"mainNav"}>
-                                            <li><NavLink to={"/"}>Home</NavLink></li>
-                                            <li><NavLink to={"/odcinki"}>Odcinki</NavLink></li>
-                                            <li><NavLink to={"/postacie"}>Postacie</NavLink></li>
+                                            <li><NavLink to={"/"}><img className={"portalPng"} src="img/portal.png" alt=""/><img className={"rickAndMorty"} src="img/nav2.png" alt=""/> Home</NavLink></li>
+                                            <li><NavLink to={"/odcinki"}><img className={"portalPng"} src="img/portal.png" alt=""/><img className={"rickAndMorty"} src="img/nav2.png" alt=""/> Odcinki</NavLink></li>
+                                            <li><NavLink to={"/postacie"}><img className={"portalPng"} src="img/portal.png" alt=""/><img className={"rickAndMorty"} src="img/nav2.png" alt=""/> Postacie</NavLink></li>
                                         </ul>
                                     </nav>
 
@@ -42,7 +42,7 @@ class Main extends Component {
 
         return(
             <>
-
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium amet consectetur consequatur error est excepturi illo inventore magnam molestiae molestias, nam odio perspiciatis possimus praesentium quae quod sunt tempore voluptates?</p>
                 <h1 style={{color: "white"}}>Home</h1>
                 </>
         )

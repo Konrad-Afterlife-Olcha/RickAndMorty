@@ -29,11 +29,32 @@
 }
 .mainNav li {
     padding: 10px;
+    margin: 0 20px;
     list-style: none;
 }
 .mainNav li a {
-    font-size: 20px;
+    font-size: 30px;
     font-family: "Comic Sans MS", sans-serif;
     text-decoration: none;
-    color: white
+    color: white;
+    position: relative;
+}
+.portalPng {
+    transition: 1s;
+    width: 40px;
+}
+.rickAndMorty {
+    position: absolute;
+    left: 10px;
+    top: 0;
+    width: 25px;
+    transform: scale(0);
+    transition: 1s;
+}
+
+.mainNav li a:hover .portalPng {
+    transform:  rotate(720deg);
+}
+.mainNav li a:hover .rickAndMorty {
+    transform: scale(1);
 }
