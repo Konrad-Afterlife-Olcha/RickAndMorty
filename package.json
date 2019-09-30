@@ -30,6 +30,7 @@
     "webpack-dev-server": "^3.2.1"
   },
   "dependencies": {
+    "@material-ui/core": "^4.4.3",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-router-dom": "^4.3.1"

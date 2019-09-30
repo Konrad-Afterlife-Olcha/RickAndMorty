@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.background {
+    background-image: url("/img/car.png");
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: -10;
+}
+.mainDiv {
+
+}
+.container {
+    margin: 0 auto;
+    width: 1000px;
+    height: 2000px;
+
+
+}
+.mainNav {
+    display: flex;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    background-color: black;
+
+}
+.mainNav li {
+    padding: 10px;
+    list-style: none;
+}
+.mainNav li a {
+    font-size: 20px;
+    font-family: "Comic Sans MS", sans-serif;
+    text-decoration: none;
+    color: white
+}
