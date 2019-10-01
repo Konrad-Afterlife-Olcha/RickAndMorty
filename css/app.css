@@ -1,30 +1,53 @@
+@font-face {
+    font-family: 'get_schwiftyregular';
+    src: url('fonts/get_schwifty__a_rick_and_morty_font_by_jonizaak-dajw4u8-webfont.woff2') format('woff2'),
+    url('fonts/get_schwifty__a_rick_and_morty_font_by_jonizaak-dajw4u8-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
 * {
     margin: 0;
     padding: 0;
 }
 .background {
     background-image: url("/img/car.png");
+    background-size: cover;
     width: 100vw;
     height: 100vh;
     position: fixed;
     z-index: -10;
 }
 .mainDiv {
-
+    width: 1000px;
+    margin: 0 auto;
 }
 .container {
     margin: 0 auto;
     width: 1000px;
-    height: 2000px;
 
 
 }
+.logoAndNav {
+    margin-bottom: 50px;
+
+}
+.mainLogo {
+    width: 400px;
+    text-align: center;
+
+}
+.mainLogoContainer {
+
+    text-align: center;
+}
 .mainNav {
+    margin: 0 auto;
     display: flex;
-    position: fixed;
-    top: 0;
-    width: 100vw;
-    background-color: black;
+    width: 1000px;
+    justify-content: space-around;
 
 }
 .mainNav li {
@@ -33,11 +56,13 @@
     list-style: none;
 }
 .mainNav li a {
-    font-size: 30px;
-    font-family: "Comic Sans MS", sans-serif;
+    font-size: 40px;
+    font-family: 'get_schwiftyregular', sans-serif;
     text-decoration: none;
-    color: white;
+    color: #00B0C7;
     position: relative;
+    text-transform: uppercase;
+    text-shadow: 1px 0 black, -1px 0 black, 0 1px black,0 -1px black, 2px 0 2px #7EB65D,-2px 0 2px #7EB65D, 0 2px 2px #7EB65D,0 -2px 2px #7EB65D;
 }
 .portalPng {
     transition: 1s;
@@ -57,4 +82,63 @@
 }
 .mainNav li a:hover .rickAndMorty {
     transform: scale(1);
+}
+.buttonsNav {
+    position: relative;
+}
+.active p {
+    text-shadow: 1px 0 black, -1px 0 black, 0 1px black,0 -1px black, 4px 0 4px #7EB65D,-4px 0 4px #7EB65D, 0 4px 4px #7EB65D,0 -4px 4px #7EB65D;
+}
+.characterComponent img {
+    width: 200px;
+    border-radius: 20%;
+}
+
+.charactersContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.characterComponent {
+    background-color: rgba(0, 0, 0, 30%);
+    width: 200px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 4px solid #7EB65D;
+    border-radius: 20%;
+}
+.characterComponent p {
+    text-align: center;
+    color: white;
+    font-family: "Comic Sans MS", sans-serif;
+}
+.buttonPrev, .buttonNext {
+    background: transparent;
+    border: none;
+    font-family: "Comic Sans MS", sans-serif;
+    font-size: 30px;
+    padding: 10px;
+    cursor: pointer;
+    color: white;
+}
+.galleryTopNav{
+    display: flex;
+    justify-content: space-between;
+}
+.nav-active p {
+    text-shadow: 1px 0 black, -1px 0 black, 0 1px black,0 -1px black, 4px 0 4px #7EB65D,-4px 0 4px #7EB65D, 0 4px 4px #7EB65D,0 -4px 4px #7EB65D;
+}
+.nav-active p  .rickAndMorty {
+    transform: scale(1);
+}
+.seasons {
+    display: flex;
+    justify-content: space-around;
+}
+.seasonButton {
+    background: transparent;
+    border: none;
+    color: white;
+    font-family: "Comic Sans MS", sans-serif;
+    font-size: 30px;
 }
