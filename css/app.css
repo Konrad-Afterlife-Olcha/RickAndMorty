@@ -21,8 +21,11 @@
     z-index: -10;
 }
 .mainDiv {
-    width: 1000px;
+    width: 1300px;
     margin: 0 auto;
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom, rgba(34,31,102, 70%), rgba(80,38,100, 70%), rgba(108,51,98, 70%), rgba(128,69,98, 70%), rgba(142,90,102, 70%));
+
 }
 .container {
     margin: 0 auto;
@@ -95,6 +98,7 @@
 .characterComponent img {
     width: 200px;
     border-radius: 20%;
+
 }
 
 .charactersContainer {
@@ -106,12 +110,20 @@
     background-color: rgba(0, 0, 0, 30%);
     width: 200px;
     padding: 10px;
+    padding-bottom: 20px;
     margin-bottom: 20px;
     border: 4px solid #7EB65D;
     border-radius: 20%;
+    transition: 1s;
+}
+.characterInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .characterComponent p {
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
     color: white;
     font-family: "Comic Sans MS", sans-serif;
 }
@@ -147,7 +159,7 @@
 }
 
 .episodeInfo {
-    background:  rgb(0,175,199, 90%);
+    background:  rgba(0,175,199, 50%);
     border: 3px solid black;
     box-shadow: 4px 0 4px #7EB65D,-4px 0 4px #7EB65D, 0 4px 4px #7EB65D,0 -4px 4px #7EB65D;;
     list-style: none;
@@ -155,11 +167,15 @@
     width: 100%;
     margin: 20px;
     padding: 20px;
-    color: #555555;
+    color: #0e0f21;
     font-family:"Comic Sans MS", sans-serif;
     display: flex;
     justify-content: space-between;
+    transition: 1s;
 
+}
+.episodeArea {
+    margin:0;
 }
 
 .mainContainer {

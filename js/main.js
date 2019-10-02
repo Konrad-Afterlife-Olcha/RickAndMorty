@@ -92,7 +92,9 @@ class Main extends Component {
         return(
             <>
                 <div className={"mainContainer"}>
-
+                    <iframe width="840" height="472,5" src="https://www.youtube.com/embed/41yJzxQDUJU" frameBorder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen></iframe>
                 </div>
                 <Piesel text={pieselTexts[0]}/>
 
@@ -175,24 +177,25 @@ class Episodes extends Component {
     constructor(){
         super();
         this.state = {
-            episodes: []
+            episodes: [],
+            episodes2: []
         };
         this.mounted = false
     }
     componentDidMount() {
         this.mounted = true;
-        fetch(`https://rickandmortyapi.com/api/episode/`).then(res=>res.json() ).then((res)=> {
+         fetch(`https://rickandmortyapi.com/api/episode/`).then(res=>res.json() ).then((res)=> {
             if(this.mounted){
                         this.setState({
                             episodes: res.results
                         })
             }
                     }
-                )
+                );
         fetch(`https://rickandmortyapi.com/api/episode?page=2`).then(res=>res.json() ).then((res)=> {
             if(this.mounted){
                         this.setState({
-                            episodes: [...this.state.episodes, ...res.results]
+                            episodes2: res.results
                         })
             }
 
@@ -207,7 +210,8 @@ class Episodes extends Component {
 
         return(
             <>
-                {this.state.episodes.length === 31 ? <EpisodesArea episodes={this.state.episodes} season={this.state.season}/> : null }
+                {this.state.episodes.length ? <EpisodesArea episodes={this.state.episodes}/> : null }
+                {this.state.episodes2.length ? <EpisodesArea episodes={this.state.episodes2}/> : null }
             </>
         )
     }
@@ -215,14 +219,31 @@ class Episodes extends Component {
 }
 
 class EpisodesArea extends Component {
+    constructor(){
+        super()
+        this.state = {
+            opacity: 0
+        }
+    }
+    componentDidMount() {
+        this.timeout = setTimeout(()=>(
+            this.setState({
+                opacity: 1
+            })
+        ), 500)
+    }
+    componentWillUnmount() {
+        clearTimeout(this.timeout)
+    }
+
     render() {
 
         return(
             <>
-                <div className={"episodesArea"}>
+                <div className={"episodesArea"} >
                     {this.props.episodes.map((el, index)=> (
 
-                                <li className={"episodeInfo"} key={index}><p>Nazwa odcinka: {el.name}</p> <p>Piemiera: {el.air_date}</p>
+                                <li className={"episodeInfo"} style={{opacity: this.state.opacity}} key={index}><p>Nazwa odcinka: {el.name}</p> <p>Piemiera: {el.air_date}</p>
                                     <p>Epizod: {el.episode}</p>
                                 </li>
 
@@ -292,7 +313,7 @@ class Postacie extends Component {
                 </nav>
                 <div className={"charactersContainer"}>
                     {this.state.characters.length ? this.state.characters.map((el, index)=>(
-                        <Character key={index} url={el.image} name={el.name}/>
+                        <Character key={index} url={el.image} name={el.name} status={el.status} gender={el.gender}/>
                     )): null}
 
                 </div>
@@ -327,20 +348,57 @@ class MainLogo extends Component {
 }
 
 class Character extends Component {
-
-
-
-
+    constructor(){
+        super()
+        this.state = {
+            opacity: 0
+        }
+    }
+    componentDidMount() {
+        this.timeout = setTimeout(()=>(
+            this.setState({
+                opacity: 1
+            })
+        ), 500)
+    }
+    componentWillUnmount() {
+        clearTimeout(this.timeout)
+    }
+    characterStatus = () => {
+        if (this.props.status === "Alive") {
+            return "żywy"
+        }
+        if (this.props.status === "unknown") {
+            return "nieznany"
+        }
+        if (this.props.status === "Dead") {
+            return "martwy"
+        }
+    }
+    characterGender = () => {
+        if(this.props.gender === "Male"){
+            return "Mężczyzna"
+        }
+        if(this.props.gender === "Female"){
+            return "Kobieta"
+        }
+        if(this.props.gender === "unknown"){
+            return "nieznana"
+        }
+    }
     render() {
 
         return (
             <>
 
-                <div className={"characterComponent"}>
+                <div className={"characterComponent"}  style={{opacity: this.state.opacity}}>
                     <img  src={this.props.url} alt=""/>
-                    <p>{this.props.name}</p>
+                    <div className={"characterInfo"}>
+                        <p>Imię: <span>{this.props.name}</span></p>
+                        <p>Status: <span>{this.characterStatus()}</span></p>
+                        <p>Płeć: <span>{this.characterGender()}</span></p>
+                        </div>
                 </div>
-
                 </>
         )
     }
