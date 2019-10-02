@@ -191,6 +191,28 @@
     z-index: -1;
 }
 
-@keyframes mainAnimation {
-
+.quizContainer {
+    width: 700px;
+    background-image: linear-gradient(to top, #00b0c7, #00b5b5, #22b89a, #55b87c, #7eb65d);
+    margin-bottom: 50px;
+    -webkit-box-shadow: -1px -5px 75px -9px rgba(34,184,153,0.61);
+    -moz-box-shadow: -1px -5px 75px -9px rgba(34,184,153,0.61);
+    box-shadow: -1px -5px 75px -9px rgba(34,184,153,0.61);
+    border-radius: 10px;
+}
+.question {
+    min-height: 100px;
+    width: 100%;
+    text-align: center;
+    font-family: "Comic Sans MS", sans-serif;
+    font-size: 50px;
+    color: #00B0C7;
+    text-shadow: 1px 0 black, -1px 0 black, 0 1px black,0 -1px black;
+    padding: 10px;
+}
+.quizImg {
+    text-align: center;
+}
+.answersContainer {
+    display: flex;
 }

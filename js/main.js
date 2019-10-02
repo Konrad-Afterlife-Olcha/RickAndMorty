@@ -32,7 +32,7 @@ const quizQuestions = [
         img: "https://samequizy.pl/wp-content/uploads/2018/06/filing_images_16cb6959d039.jpg",
         pytanie: "Jak Rick zniszczył Cytadelę Ricków?",
         odpowiedzi: ["Zmieniając 1 na 0", "Zabijając wszystkich", "Teleportując Cytadelę do więzienia federalnego", ""],
-        poprawna: "Najmądrzejszym ssakiem we Wszechświecie"
+        poprawna: "Zmieniając 1 na 0"
     }
 
 
@@ -278,7 +278,20 @@ class Quiz extends Component {
 
         return(
             <>
-                <QuizQuestion/>
+                {quizQuestions.map((el, index)=>(
+                    <div key={index} className={"quizContainer"}>
+                        <QuizQuestion question={el.pytanie}/>
+                        <QuizImg img={el.img}/>
+                        <div className={"answerContainer"}>
+                            {el.odpowiedzi.map((item, index)=>(
+                                <QuizAnswer key={index} answer={item} right={el.poprawna}/>
+
+                            ))}
+                        </div>
+                        </div>
+                ))}
+
+
                 </>
         )
     }
@@ -288,8 +301,60 @@ class QuizQuestion extends Component {
 
         return(
             <>
-                Pytanie
+                <h2 className={"question"}>{this.props.question}</h2>
                 </>
+        )
+    }
+}
+class QuizImg extends Component {
+    render() {
+
+        return(
+            <>
+                <div className={"quizImg"}><img src={this.props.img} alt=""/></div>
+            </>
+        )
+    }
+}
+class QuizAnswer extends Component {
+    constructor(){
+        super();
+        this.state = {
+            rightAnswer: null,
+            badAnswer: null
+        }
+    }
+
+    setStyle = ()=>{
+        if(this.state.rightAnswer){
+            return {
+                color: "green"
+            }
+        } else if(this.state.badAnswer) {
+            return {
+                color: "red"
+            }
+        }
+
+
+
+    }
+    render() {
+
+        return(
+            <>
+                <p onClick={()=>{
+                    if(this.props.right === this.props.answer){
+                            this.setState({
+                                rightAnswer: true,
+                            })
+                    } else {
+                            this.setState({
+                                badAnswer: true
+                            })
+                    }
+                }} className={"answer"} style={this.setStyle()}>{this.props.answer}</p>
+            </>
         )
     }
 }
