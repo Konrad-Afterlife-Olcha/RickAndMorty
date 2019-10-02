@@ -13,7 +13,7 @@ const quizQuestions = [
     {
         img: "https://samequizy.pl/wp-content/uploads/2018/06/filing_images_5a8672051ba0.jpg",
         pytanie: "Ile lat minęło zanim wrócił do córki?",
-        odpowiedzi: ["30 lat", "20 lat", "40lat", "Math.floor(Math.random()*40)"],
+        odpowiedzi: ["30 lat", "20 lat", "40lat", "Math.random()*40"],
         poprawna: "20 lat"
     },
     {
@@ -31,11 +31,20 @@ const quizQuestions = [
     {
         img: "https://samequizy.pl/wp-content/uploads/2018/06/filing_images_16cb6959d039.jpg",
         pytanie: "Jak Rick zniszczył Cytadelę Ricków?",
-        odpowiedzi: ["Zmieniając 1 na 0", "Zabijając wszystkich", "Teleportując Cytadelę do więzienia federalnego", ""],
+        odpowiedzi: ["Zmieniając 1 na 0", "Zabijając wszystkich", "Teleportując Cytadelę do więzienia federalnego"],
         poprawna: "Zmieniając 1 na 0"
     }
 
 
+];
+const pieselTexts = [
+    "Cześć człowieku, kliknij mnie, a może przeżyjesz",
+    "Mam na imię Pimpek i zamierzam zniewolić ludzkość za to... ",
+    "... że robią tak paskudne strony, na przykład taka jak ta.",
+    "Przekonaj mnie, że się mylę, a pozwolę wam pozostać wolnymi ludźmi.",
+    "Masz 5 sekund...",
+    "Dobrze, przekonałeś mnie",
+    "Nie przemawiają do mnie twoje argumenty, teraz zostaniesz moim niewolnikiem"
 ]
 
 
@@ -83,21 +92,85 @@ class Main extends Component {
         return(
             <>
                 <div className={"mainContainer"}>
-                    <img src="img/mainImage.png" alt=""/>
-                    <LeftMesseage/>
+
                 </div>
+                <Piesel text={pieselTexts[0]}/>
+
                 </>
         )
     }
 }
-class LeftMesseage extends Component {
-    render() {
+class Piesel extends Component {
+    constructor(){
+        super();
+        this.state = {
+            opacity: true,
+            pieselText: 0,
+            convince: false,
+            convinceOpacity: true
+        }
+    }
+    componentDidUpdate() {
+        if (this.state.pieselText === 4) {
+            this.timeout = setTimeout(() => {
+                console.log("działa")
+                if(this.state.convince){
+                    this.setState({
+                        pieselText: 5
+                    })
+                } else {
+                    this.setState({
+                        pieselText: 6
+                    })
+                }
+            }, 5000)
+        }
+    }
+    componentWillUnmount() {
+        clearTimeout(this.timeout)
+    }
 
-        return (
-            <div className={"leftMesseage"}>Hej, pewnie jesteście tutaj bo nie macie nic do roboty?</div>
+    render() {
+        return(
+            <>
+
+
+                    <div className={"pieselText"} style={{opacity: this.state.opacity ? 1 : 0}}>{pieselTexts[this.state.pieselText]}</div>
+                    < div onClick = {()=> {
+                        console.log(this.state.pieselText)
+                        if (this.state.pieselText < 4) {
+                            this.setState({
+                                pieselText: this.state.pieselText + 1
+                            })
+                        }
+                        if(this.state.pieselText === 3) {
+                            this.setState({
+                                convinceOpacity: false
+                            })
+                        }
+
+
+                    }} className={"piesel"} style={{opacity: this.state.opacity ? 1 : 0}}><img src="img/piesel.png" alt="" /></div>
+
+
+                <p onClick={()=>(
+                    this.setState({
+                        opacity: !this.state.opacity
+                    })
+                )} className={"hidePiesel"}>{this.state.opacity ? "Ukryj Pimpka" : "Pokaż Pimpka"}</p>
+                <button onClick={()=>(
+                    this.setState({
+                        convince: true,
+                        convinceOpacity: true
+                    })
+                )} className={"convinceButton"} style={{
+                    opacity: this.state.convinceOpacity ? 0 : 1
+                }}>Rozumiem, następnym razem bardziej się postaram :(</button>
+                </>
         )
     }
 }
+
 class Episodes extends Component {
     constructor(){
         super();
@@ -328,11 +401,11 @@ class QuizAnswer extends Component {
     setStyle = ()=>{
         if(this.state.rightAnswer){
             return {
-                color: "green"
+                border: "4px solid green"
             }
         } else if(this.state.badAnswer) {
             return {
-                color: "red"
+                border: "4px solid red"
             }
         }
 
@@ -342,7 +415,7 @@ class QuizAnswer extends Component {
     render() {
 
         return(
-            <>
+
                 <p onClick={()=>{
                     if(this.props.right === this.props.answer){
                             this.setState({
@@ -354,7 +427,7 @@ class QuizAnswer extends Component {
                             })
                     }
                 }} className={"answer"} style={this.setStyle()}>{this.props.answer}</p>
-            </>
+
         )
     }
 }
