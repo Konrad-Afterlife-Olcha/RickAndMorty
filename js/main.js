@@ -1,7 +1,42 @@
 import React, {Component} from "react";
 import ReactDOM from "react-dom";
 import {Route, NavLink, BrowserRouter} from "react-router-dom";
-import Button from '@material-ui/core/Button';
+
+const quizQuestions = [
+    {
+        img: "https://samequizy.pl/wp-content/uploads/2018/08/filing_images_72b0674a318d.jpeg",
+        pytanie: "Kim jest Rick Sanchez?",
+
+        odpowiedzi: ["Najmądrzejszym ssakiem we Wszechświecie","Przypadkowym gościem", "Postacią drugoplanową", "Jest lekarzem, dlatego ma fartuch", "Jest programistą Java w wersji script", "Nikim"],
+        poprawna: "Najmądrzejszym ssakiem we Wszechświecie"
+    },
+    {
+        img: "https://samequizy.pl/wp-content/uploads/2018/06/filing_images_5a8672051ba0.jpg",
+        pytanie: "Ile lat minęło zanim wrócił do córki?",
+        odpowiedzi: ["30 lat", "20 lat", "40lat", "Math.floor(Math.random()*40)"],
+        poprawna: "20 lat"
+    },
+    {
+        img: "https://samequizy.pl/wp-content/uploads/2018/08/filing_images_5ef027ddbcf4.jpg",
+        pytanie: "Jak nazywa się ta postać?",
+        odpowiedzi: ["Gazek", "JSON", "Pierd", "Chmurka", "Mgiełka"],
+        poprawna: "Pierd"
+    },
+    {
+        img: "https://samequizy.pl/wp-content/uploads/2018/08/filing_images_a27a0c99bff6-1.jpeg",
+        pytanie: "Jak nazywały się te potworki?",
+        odpowiedzi: ["Munions", "Meeseeks", "Backend Developers", "W serialu nie było tych postaci"],
+        poprawna: "Meeseeks"
+    },
+    {
+        img: "https://samequizy.pl/wp-content/uploads/2018/06/filing_images_16cb6959d039.jpg",
+        pytanie: "Jak Rick zniszczył Cytadelę Ricków?",
+        odpowiedzi: ["Zmieniając 1 na 0", "Zabijając wszystkich", "Teleportując Cytadelę do więzienia federalnego", ""],
+        poprawna: "Najmądrzejszym ssakiem we Wszechświecie"
+    }
+
+
+]
 
 
 
@@ -18,9 +53,10 @@ class App extends React.Component {
                                         <nav className={"logoAndNav"}>
                                             <MainLogo/>
                                             <ul className={"mainNav"}>
-                                                <li><NavLink exact activeClassName={"nav-active"} to={"/"}><NavButton exact title={"Home"}/></NavLink></li>
-                                                <li><NavLink activeClassName={"nav-active"} to={"/odcinki"}><NavButton exact title={"Odcinki"}/></NavLink></li>
+                                                <li><NavLink exact activeClassName={"nav-active"} to={"/"}><NavButton exact title={"News"}/></NavLink></li>
                                                 <li><NavLink activeClassName={"nav-active"} to={"/postacie"}><NavButton exact title={"Postacie"}/></NavLink></li>
+                                                <li><NavLink activeClassName={"nav-active"} to={"/odcinki"}><NavButton exact title={"Odcinki"}/></NavLink></li>
+                                                <li><NavLink activeClassName={"nav-active"} to={"/quiz"}><NavButton exact title={"Quiz"}/></NavLink></li>
                                             </ul>
                                         </nav>
 
@@ -28,8 +64,9 @@ class App extends React.Component {
 
                                     <div className={"container"}>
                                         <Route path={"/"} exact component={Main}/>
-                                        <Route path={"/odcinki"} exact component={Episodes}/>
                                         <Route path={"/postacie"} exact component={Postacie}/>
+                                        <Route path={"/odcinki"} exact component={Episodes}/>
+                                        <Route path={"/quiz"} exact component={Quiz}/>
                                     </div>
                                 </div>
                         </>
@@ -45,95 +82,151 @@ class Main extends Component {
 
         return(
             <>
-                <h1 style={{color: "white"}}>Home</h1>
+                <div className={"mainContainer"}>
+                    <img src="img/mainImage.png" alt=""/>
+                    <LeftMesseage/>
+                </div>
                 </>
+        )
+    }
+}
+class LeftMesseage extends Component {
+    render() {
+
+        return (
+            <div className={"leftMesseage"}>Hej, pewnie jesteście tutaj bo nie macie nic do roboty?</div>
         )
     }
 }
 class Episodes extends Component {
     constructor(){
-        super()
+        super();
         this.state = {
-            episodes: [],
-            season: 1
+            episodes: []
         };
+        this.mounted = false
     }
     componentDidMount() {
-        fetch(`https://rickandmortyapi.com/api/episode/?page=${this.state.page}`).then(res => res.json()).then((res) => {
+        this.mounted = true;
+        fetch(`https://rickandmortyapi.com/api/episode/`).then(res=>res.json() ).then((res)=> {
+            if(this.mounted){
                         this.setState({
-                            characters: res.results
+                            episodes: res.results
                         })
+            }
                     }
                 )
-        }
+        fetch(`https://rickandmortyapi.com/api/episode?page=2`).then(res=>res.json() ).then((res)=> {
+            if(this.mounted){
+                        this.setState({
+                            episodes: [...this.state.episodes, ...res.results]
+                        })
+            }
+
+                    }
+                )
+    }
+    componentWillUnmount() {
+        this.mounted = false
+    }
 
     render() {
 
         return(
             <>
-                <nav className={"seasons"}><button className={"seasonButton"}>Pierwszy sezon</button><button className={"seasonButton"}>Drugi sezon</button><button className={"seasonButton"}>Trzeci sezon</button></nav>
+                {this.state.episodes.length === 31 ? <EpisodesArea episodes={this.state.episodes} season={this.state.season}/> : null }
             </>
+        )
+    }
+
+}
+
+class EpisodesArea extends Component {
+    render() {
+
+        return(
+            <>
+                <div className={"episodesArea"}>
+                    {this.props.episodes.map((el, index)=> (
+
+                                <li className={"episodeInfo"} key={index}><p>Nazwa odcinka: {el.name}</p> <p>Piemiera: {el.air_date}</p>
+                                    <p>Epizod: {el.episode}</p>
+                                </li>
+
+                        )
+                    )}
+                </div>
+                </>
+
         )
     }
 }
 
 class Postacie extends Component {
-    // constructor(){
-    //     super()
-    //     this.state = {
-    //         characters: [],
-    //         page: 1
-    //     };
-    // }
-    // componentDidMount() {
-    //     fetch(`https://rickandmortyapi.com/api/character/?page=${this.state.page}`).then(res=>res.json() ).then((res)=> {
-    //             this.setState({
-    //                 characters: res.results
-    //             })
-    //         }
-    //     )
-    // }
-    //
-    // componentDidUpdate() {
-    //     fetch(`https://rickandmortyapi.com/api/character/?page=${this.state.page}`).then(res=>res.json() ).then((res)=> {
-    //             this.setState({
-    //                 characters: res.results
-    //             })
-    //         }
-    //     )
-    // }
-    // componentWillUnmount() {
-    // }
-    //
-    // render() {
-    //
-    //
-    //     return(
-    //         <>
-    //             <nav className={"galleryTopNav"}>
-    //                 <button className={"buttonPrev"} onClick={()=>(
-    //                     this.setState({
-    //                         page: this.state.page === 1 ? 25 : (this.state.page - 1)
-    //
-    //                     })
-    //                 )}>Prev page</button>
-    //                 <button className={"buttonNext"} onClick={()=>(
-    //                     this.setState({
-    //                         page: this.state.page === 25 ? 1 : (this.state.page + 1)
-    //
-    //                     })
-    //                 )}>Next page</button>
-    //             </nav>
-    //             <div className={"charactersContainer"}>
-    //                 {this.state.characters.length ? this.state.characters.map((el, index)=>(
-    //                     <Character key={index} url={el.image} name={el.name}/>
-    //                 )): null}
-    //
-    //             </div>
-    //             {/*{this.state.characters.length ? <Character url={this.state.characters[1].image} name={this.state.characters[1].name}/> : null}*/}
-    //         </>
-    //     )
-    // }
+    constructor(){
+        super()
+        this.state = {
+            characters: [],
+            page: 1
+        };
+        this.mountedChar = false
+    }
+    componentDidMount() {
+        this.mountedChar = true;
+        fetch(`https://rickandmortyapi.com/api/character/?page=${this.state.page}`).then(res=>res.json() ).then((res)=> {
+            if(this.mountedChar) {
+                this.setState({
+                    characters: res.results
+                })
+            }
+            }
+        )
+    }
+
+    componentDidUpdate() {
+        this.mountedChar = true;
+        fetch(`https://rickandmortyapi.com/api/character/?page=${this.state.page}`).then(res=>res.json() ).then((res)=> {
+            if(this.mountedChar) {
+                this.setState({
+                    characters: res.results
+                })
+            }
+            }
+        )
+    }
+    componentWillUnmount() {
+        this.mountedChar = false
+    }
+
+    render() {
+
+
+        return(
+            <>
+                <nav className={"galleryTopNav"}>
+                    <button className={"buttonPrev"} onClick={()=>(
+                        this.setState({
+                            page: this.state.page === 1 ? 25 : (this.state.page - 1)
+
+                        })
+                    )}>Prev page</button>
+                    <button className={"buttonNext"} onClick={()=>(
+                        this.setState({
+                            page: this.state.page === 25 ? 1 : (this.state.page + 1)
+
+                        })
+                    )}>Next page</button>
+                </nav>
+                <div className={"charactersContainer"}>
+                    {this.state.characters.length ? this.state.characters.map((el, index)=>(
+                        <Character key={index} url={el.image} name={el.name}/>
+                    )): null}
+
+                </div>
+                {/*{this.state.characters.length ? <Character url={this.state.characters[1].image} name={this.state.characters[1].name}/> : null}*/}
+            </>
+        )
+    }
 }
 
 class NavButton extends Component {
@@ -175,6 +268,27 @@ class Character extends Component {
                     <p>{this.props.name}</p>
                 </div>
 
+                </>
+        )
+    }
+}
+
+class Quiz extends Component {
+    render() {
+
+        return(
+            <>
+                <QuizQuestion/>
+                </>
+        )
+    }
+}
+class QuizQuestion extends Component {
+    render() {
+
+        return(
+            <>
+                Pytanie
                 </>
         )
     }

@@ -13,7 +13,7 @@
     padding: 0;
 }
 .background {
-    background-image: url("/img/car.png");
+    background-image: url("/img/main2.jpg");
     background-size: cover;
     width: 100vw;
     height: 100vh;
@@ -141,4 +141,56 @@
     color: white;
     font-family: "Comic Sans MS", sans-serif;
     font-size: 30px;
+}
+
+.episodeInfo {
+    background:  rgb(0,175,199, 90%);
+    border: 3px solid black;
+    box-shadow: 4px 0 4px #7EB65D,-4px 0 4px #7EB65D, 0 4px 4px #7EB65D,0 -4px 4px #7EB65D;;
+    list-style: none;
+    font-size: 20px;
+    width: 100%;
+    margin: 20px;
+    padding: 20px;
+    color: #555555;
+    font-family:"Comic Sans MS", sans-serif;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.mainContainer {
+    position: relative;
+}
+.mainContainer img {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.leftMesseage {
+    position: absolute;
+    left: 20%;
+    background-color: white;
+    border-radius: 30%;
+    width: 200px;
+    height: 70px;
+    padding: 10px;
+    font-family: "Comic Sans MS",sans-serif;
+}
+.leftMesseage::after {
+
+    content: "";
+    display: block;
+    position: absolute;
+    right: 7px;
+    bottom: 0;
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    transform: rotate(15deg);
+    z-index: -1;
+}
+
+@keyframes mainAnimation {
+
 }
