@@ -12,6 +12,7 @@
     margin: 0;
     padding: 0;
 }
+
 .background {
     background-image: url("/img/main2.jpg");
     background-size: cover;
@@ -21,10 +22,12 @@
     z-index: -10;
 }
 .mainDiv {
+    min-height: 100vh;
+    box-sizing: border-box;
     width: 1300px;
     margin: 0 auto;
-    min-height: 100vh;
-    background-image: linear-gradient(to bottom, rgba(34,31,102, 70%), rgba(80,38,100, 70%), rgba(108,51,98, 70%), rgba(128,69,98, 70%), rgba(142,90,102, 70%));
+    padding-top: 150px;
+    background-image: linear-gradient(to bottom, rgba(34,31,102), rgba(80,38,100), rgba(108,51,98), rgba(128,69,98), rgba(142,90,102));
 
 }
 .container {
@@ -37,12 +40,21 @@
 
 }
 .logoAndNav {
+    position: fixed;
+    top: 0;
+    width: 100vw;
     margin-bottom: 50px;
-
+    z-index: 1000;
+    display: flex;
+    background-image: url("/img/navBg.jpg");
+    background-position: 0 300px;
+    -webkit-box-shadow: 0px 5px 15px -4px rgba(17,53,131,1);
+    -moz-box-shadow: 0px 5px 15px -4px rgba(17,53,131,1);
+    box-shadow: 0px 5px 15px -4px rgba(17,53,131,1);
 }
 .mainLogo {
-    width: 400px;
-    text-align: center;
+    width: 300px;
+    margin-left: 100px;
 
 }
 .mainLogoContainer {
@@ -54,21 +66,29 @@
     display: flex;
     width: 1000px;
     justify-content: space-around;
+    align-items: center;
 
 }
 .mainNav li {
-    padding: 10px;
+    padding: 5px;
     margin: 0 20px;
     list-style: none;
+
 }
 .mainNav li a {
-    font-size: 40px;
-    font-family: 'get_schwiftyregular', sans-serif;
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    font-family: 'Comic Sans MS', sans-serif;
     text-decoration: none;
     color: #00B0C7;
     position: relative;
-    text-transform: uppercase;
+
     text-shadow: 1px 0 black, -1px 0 black, 0 1px black,0 -1px black, 2px 0 2px #7EB65D,-2px 0 2px #7EB65D, 0 2px 2px #7EB65D,0 -2px 2px #7EB65D;
+    transition: 0.2s;
+}
+.mainNav li:hover a {
+    text-shadow: 1px 0 black, -1px 0 black, 0 1px black,0 -1px black, 4px 0 4px #7EB65D,-4px 0 4px #7EB65D, 0 4px 4px #7EB65D,0 -4px 4px #7EB65D;
 }
 .portalPng {
     transition: 1s;
@@ -84,7 +104,7 @@
 }
 
 .mainNav li a:hover .portalPng {
-    transform:  rotate(720deg);
+    transform:  rotate(360deg);
 }
 .mainNav li a:hover .rickAndMorty {
     transform: scale(1);
@@ -95,6 +115,23 @@
 .active p {
     text-shadow: 1px 0 black, -1px 0 black, 0 1px black,0 -1px black, 4px 0 4px #7EB65D,-4px 0 4px #7EB65D, 0 4px 4px #7EB65D,0 -4px 4px #7EB65D;
 }
+.newsMessage {
+    width: 85%;
+    background-color: #163588;
+    font-family: 'Comic Sans MS', sans-serif;
+    text-decoration: none;
+    color: #00B0C7;
+    text-shadow: 1px 0 black, -1px 0 black, 0 1px black,0 -1px black;
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 20px 0;
+
+}
+/*.newsMessage p*/
+
+
+
+
 .characterComponent img {
     width: 200px;
     border-radius: 20%;
@@ -134,7 +171,11 @@
     font-size: 30px;
     padding: 10px;
     cursor: pointer;
-    color: white;
+    text-decoration: none;
+    color: #00B0C7;
+    position: relative;
+
+    text-shadow: 1px 0 black, -1px 0 black, 0 1px black,0 -1px black, 2px 0 2px #7EB65D,-2px 0 2px #7EB65D, 0 2px 2px #7EB65D,0 -2px 2px #7EB65D;
 }
 .galleryTopNav{
     display: flex;
@@ -159,27 +200,34 @@
 }
 
 .episodeInfo {
-    background:  rgba(0,175,199, 50%);
-    border: 3px solid black;
-    box-shadow: 4px 0 4px #7EB65D,-4px 0 4px #7EB65D, 0 4px 4px #7EB65D,0 -4px 4px #7EB65D;;
+    /*border: 3px solid black;*/
+    /*box-shadow: 4px 0 4px #7EB65D,-4px 0 4px #7EB65D, 0 4px 4px #7EB65D,0 -4px 4px #7EB65D;;*/
     list-style: none;
-    font-size: 20px;
-    width: 100%;
-    margin: 20px;
+    font-size: 25px;
     padding: 20px;
-    color: #0e0f21;
-    font-family:"Comic Sans MS", sans-serif;
     display: flex;
     justify-content: space-between;
     transition: 1s;
+    width: 1000px;
+    background: #163588;
+    font-family: 'Comic Sans MS', sans-serif;
+    text-decoration: none;
+    color: #00B0C7;
+    text-shadow: 1px 0 black, -1px 0 black, 0 1px black,0 -1px black;
 
+    box-sizing: border-box;
+    margin: 20px 0;
 }
-.episodeArea {
-    margin:0;
+.episodeImg {
+    height: 150px;
 }
 
 .mainContainer {
     position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 .mainContainer img {
     position: absolute;
@@ -213,7 +261,7 @@
 .answerContainer {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-around;
     flex-wrap: wrap;
 }
 .answer {
@@ -232,10 +280,13 @@
 
 
 }
-.piesel {
-    position: absolute;
+.pieselContainer {
+    position: fixed;
     left: 0;
-    bottom: 0;
+    bottom: 20px;
+    z-index: 10;
+}
+.piesel {
     transition: 1s;
 }
 .pieselText {
@@ -282,4 +333,147 @@
     bottom: 50px;
     border-radius: 20%;
     transition: 0.5s;
+}
+.footer {
+    position: fixed;
+    background-color: black;
+    width: 100vw;
+    bottom: 0;
+    text-align: center;
+    z-index: 1000;
+}
+.footer p {
+    font-size: 10px;
+    color: white;
+    font-family: "Comic Sans MS", sans-serif;
+}
+
+.gifsContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+@media (max-width: 1320px) {
+    .mainNav li a {
+        font-size: 20px;
+    }
+    .portalPng {
+        width: 30px;
+    }
+    .rickAndMorty {
+        width: 20px
+    }
+    .mainDiv {
+        width: 80vw;
+    }
+    .mainLogo {
+        margin-left: 10px
+    }
+    .mainContainer {
+        width: 100%;
+    }
+    .container {
+        width: 100%
+    }
+    iframe {
+        width: 80%;
+    }
+    .episodeInfo {
+        width: 90%;
+    }
+}
+@media (max-width: 1025px) {
+    .portalPng {
+        display: none;
+    }
+    .rickAndMorty {
+        display: none;
+    }
+    .pieselContainer {
+        display: none;
+    }
+    .quizContainer {
+        width: 80%;
+    }
+    .quizImg img {
+        width: 90%;
+    }
+
+
+}
+@media (max-width: 840px) {
+    .mainNav {
+        overflow: hidden;
+    }
+    .mainNav {
+        /*display: none;*/
+        position: absolute;
+        width: 200px;
+        height: 300px;
+        right: 0;
+        top: 100px;
+        background-image: linear-gradient(to right top, #13368a, #4d2a7a, #661c65, #731150, #77103b);
+        flex-direction: column;
+        transition: 1s;
+        transform: translateX(100%);
+    }
+    .hamburger {
+        position: absolute;
+        right: 80px;
+        top: 20px;
+        color: white;
+        z-index: 10000;
+    }
+    .fa-bars {
+        font-size: 60px;
+        color: #00B0C7;
+        text-shadow: 1px 0 black, -1px 0 black, 0 1px black,0 -1px black, 2px 0 2px #7EB65D,-2px 0 2px #7EB65D, 0 2px 2px #7EB65D,0 -2px 2px #7EB65D;
+    }
+    .answer {
+        padding: 2px;
+        margin: 5px;
+        width: 40%;
+    }
+    .question {
+        font-size: 30px;
+    }
+    .episodeInfo {
+        font-size: 15px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+
+}
+@media (max-width: 440px) {
+    .mainLogo {
+        width: 220px;
+    }
+    .hamburger {
+        right: 40px;
+        top: 15px;
+    }
+    .fa-bars {
+        font-size: 40px;
+    }
+    .mainNav {
+        top: 70px
+    }
+    .answer {
+        font-size: 10px;
+    }
+    .question {
+        font-size: 20px;
+    }
+    .episodeInfo {
+        padding: 5px;
+    }
+}
+@media (max-height: 350px) {
+    .mainNav {
+        height: 200px;
+
+    }
 }
